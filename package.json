@@ -1,0 +1,22 @@
+{
+  "name": "d3-practice",
+  "version": "1.0.0",
+  "description": "Using python server:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coolinmc6/d3-practice.git"
+  },
+  "author": "Colin McNamara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coolinmc6/d3-practice/issues"
+  },
+  "scripts": {
+    "notes": "git add . && git commit -m \"notes\" && git push"
+  },
+  "homepage": "https://github.com/coolinmc6/d3-practice#readme"
+}
