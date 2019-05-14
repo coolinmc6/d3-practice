@@ -47,14 +47,12 @@ d3.select('#viz svg')
   .style('fill', '#ff9900')
 ```
 - Here is some more on [SVG Primitives](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) but I'm going to bet that these are the primary ones:
-  - `rect`
-  - `circle`
-  - `line`
-  - `polyline`
-  - `text`
+  - `rect` - [MDN Rect](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect)
+  - `circle` - [MDN Circle](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle)
+  - `line` - [MDN Line](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line)
+  - `polyline` - [MDN Polyline](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline)
+  - `text` - [MDN Line](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text)
   - see [Appendix A](#appendix-1-svg) for a few examples
-
-
 
 ## Appendix A: SVG
 
