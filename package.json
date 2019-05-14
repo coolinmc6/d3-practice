@@ -4,15 +4,13 @@
   "description": "Using python server:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "notes": "git add . && git commit -m \"notes\" && git push"
   },
   "author": "Colin McNamara",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/coolinmc6/d3-practice/issues"
-  },
-  "scripts": {
-    "notes": "git add . && git commit -m \"notes\" && git push"
   },
   "homepage": "https://github.com/coolinmc6/d3-practice#readme"
 }
