@@ -52,10 +52,11 @@ d3.select('#viz svg')
   - `line`
   - `polyline`
   - `text`
+  - see [Appendix A](#appendix-1-svg) for a few examples
 
 
 
-## Appendix 1: SVG
+## Appendix A: SVG
 
 ```html
 <svg width="600" height="400" 
