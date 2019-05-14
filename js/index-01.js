@@ -1,0 +1,21 @@
+d3.select('#viz')
+  .append('svg')
+  .attr('width', 600)
+  .attr('height', 400)
+  .style('background', '#f7f7f7')
+
+  .append('rect')
+  .attr('x', 200)
+  .attr('y', 100)
+  .attr('height', 200)
+  .attr('width', 200)
+  .style('fill', '#ff9900')
+
+  
+d3.select('#viz svg')
+  .append('rect')
+  .attr('x', 0)
+  .attr('y', 200)
+  .attr('height', 50)
+  .attr('width', 50)
+  .style('fill', '#ff9900')
