@@ -6,6 +6,33 @@ Using python server:
 python -m http.server 8000
 ```
 
+- D3 looks like it can do a bunch of stuff and is similar to jQuery in how it selects items and then you can do things. There are a bunch of methods I could list but here are a few that stand out (just to highlight what it can do):
+  - `append()` - adding an element to the selected item
+  - `html()` - for adding HTML, not escaped text
+  - `select()` - selects the element you want
+  - `selectAll()` - selects and edits all elements that match
+  - `data()` - binds selected array of data with the selected elements. Learn more [here](https://github.com/d3/d3-selection/blob/v1.4.0/README.md#selection_data)
+  - `enter()` - placeholder nodes for each data that you are about to enter. Learn more [here](https://github.com/d3/d3-selection/blob/v1.4.0/README.md#selection_enter)
+
+
+```js
+var mydata = [
+  { date: '4/01/2017', low: 55, high: 78 },
+  { date: '4/02/2017', low: 65, high: 83 },
+  { date: '4/03/2017', low: 77, high: 90 },
+  { date: '4/04/2017', low: 58, high: 78 },
+  { date: '4/05/2017', low: 67, high: 92 },
+];
+
+d3.select('#table tbody')
+  .data(mydata)
+  .enter().append('tr')
+  .html(function(d) {
+    return `<td>${d.date}</td><td>${d.low}</td><td>${d.high}</td>`
+  })
+```
+- Notice that I first select the element from the DOM that I want to add the data to. Then I use the `data()` method to bind the data. I then use the `enter()` method to create placeholder `<tr>` elements with the three `<td>` elements inside. 
+- It looks like one of the main ways that D3 builds charts is with SVG.
 - One of the first you'll need to do is build the SVG element:
 
 ```js
@@ -53,6 +80,23 @@ d3.select('#viz svg')
   - `polyline` - [MDN Polyline](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline)
   - `text` - [MDN Line](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text)
   - see [Appendix A](#appendix-1-svg) for a few examples
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Appendix A: SVG
 
