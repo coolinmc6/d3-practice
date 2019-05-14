@@ -79,9 +79,9 @@ d3.select('#viz svg')
   - `line` - [MDN Line](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line)
   - `polyline` - [MDN Polyline](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline)
   - `text` - [MDN Line](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text)
-  - see [Appendix A](#appendix-1-svg) for a few examples
+  - see [Appendix A](#appendix-a-svg) for a few examples
 
-
+- Pick up here: [https://github.com/planetoftheweb/d3/blob/01_06e/builds/d3/js/script.js](https://github.com/planetoftheweb/d3/blob/01_06e/builds/d3/js/script.js)
 
 
 
