@@ -155,21 +155,23 @@ d3.select('#viz')   // select the #viz container element
 one of those arbritrary things where I just have to accept that I *first* select the rectangles that will be my bars and *then* create them.
 - **Note 2**: It looks like most of these functions, if there is data attached using the `data()` method, allow me to programmatically set their properties - most importantly for a bar chart: height, x position, and y position.
 
-**How do we make our chart scale with the data?**
+**How do we make our chart scale *vertically* with the data?**
 
 - We need to create a scale. There are a number of different kinds of scales but for a simple bar chart, we need `scaleLinear()` from D3.
 - The process itself is pretty simple:
   - create a variable equal to `d3.scaleLinear()`
-  - set the domain
-  - set the range
+  - set the domain (the smallest and largest points in our data set)
+  - set the range (the smallest and largest y-values for our chart)
   - *there could be other parts but this will take care of the biggest items I need to worry about*
 - Here is that in code:
 
 ```js
 var yScale = d3.scaleLinear()
-    .domain([0, d3.max(bardata)])
-    .range([0, height])
+    .domain([0, d3.max(bardata)]) // the top and bottom of our data; the largest and smallest points
+    .range([0, height])           // the top and bottom of our chart
 ```
+- *Notice* that we are using another D3 function to find the largest point: `d3.max(bardata)` - there are a lot of other ones out there as well. If our dataset went into the negatives I'm sure we could use a `min()` method as well.
+- *Notice* that was use `height`
 - Then, after creating the scale, we need to apply it to the chart. Remember, this scale is affecting the height of our bars and thus also the y position so we must update **both** of our height and y-position attributes
 
 ```js
@@ -181,6 +183,34 @@ var yScale = d3.scaleLinear()
 })
 .attr('y', function(d) {
   return height - yScale(d); // Original: return height - d;
+})
+```
+
+**How we make our data scale *horizontally* with the data?**
+
+- Just like the `yScale`, we must instantiate it with a D3 function (`d3.scaleBand()`) and then add a domain and range.
+
+```js
+var xScale = d3.scaleBand()
+    .domain(bardata)
+    .range([0, width])
+    .padding(0.2)
+```
+
+- Then we also need to adjust the width of our bars and their x position:
+
+```js
+.attr('width', function(d) {
+  return xScale.bandwidth(); // Originally a static value of barWidth
+})
+.attr('height', function(d) {
+  return yScale(d);   // Untouched
+})
+.attr('x', function(d, i) {
+  return xScale(d); // Original: return i * (barWidth + barOffset);
+})
+.attr('y', function(d) {
+  return height - yScale(d); // Untouched
 })
 ```
 
@@ -223,3 +253,6 @@ var yScale = d3.scaleLinear()
 </svg>
 ```
 
+## Appendix B: Important References, Tutorials, Etc.
+
+- [D3 API Reference Home](https://github.com/d3/d3/blob/master/API.md)
