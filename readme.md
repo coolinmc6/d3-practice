@@ -215,6 +215,116 @@ var xScale = d3.scaleBand()
 ```
 
 
+**How do you add events?**
+
+```js
+//code
+.attr('y', function(d) {
+  return height - yScale(d);
+})
+.on('mouseover', function(d) {
+  d3.select(this)
+    .style('opacity', 0.5)
+})
+.on('mouseout', function(d) {
+  d3.select(this)
+    .style('opacity', 1)
+})
+```
+- we can add it to the same d3 function using the `on` keyword. The key part is changing the right item, hence the `d3.select(this)` inside the anonymous function.
+
+
+**How do I add transitions?**
+
+```js
+.on('mouseover', function(d) {
+  d3.select(this)
+    .transition()
+    .duration(50)
+    .style('opacity', 0.5)
+})
+```
+- notice how it is BEFORE the styling. I am selecting the element and THEN adding the transition and duration
+
+**How do I add the cool bouncing bars in effect?**
+
+```js
+var myChart = 
+  d3.select('#viz')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height)
+  .style('background', '#f7f7f7')
+  .selectAll('rect').data(bardata)
+  .enter().append('rect')
+  .style('fill', '#f00')
+  .attr('width', function(d) {
+    return xScale.bandwidth();
+  })
+  .attr('height', 0) // initialize the height to 0
+  .attr('y', height) // set y position to the height of the svg
+  .attr('x', function(d) {
+    return xScale(d);
+  })
+  .on('mouseover', function(d) {
+    d3.select(this)
+      .style('opacity', 0.5)
+      
+  })
+  .on('mouseout', function(d) {
+    d3.select(this)
+      .style('opacity', 1)  
+  })
+
+// Add a transition to the myChart variable and dynamically animate the bars
+myChart.transition()
+  .attr('height', function(d) {
+    return yScale(d);
+  })
+  .attr('y', function(d) {
+    return height - yScale(d);
+  })
+  .delay(function(d, i) {
+    return i * 100;
+  })
+  .duration(1000)
+  .ease(d3.easeBounceOut)
+```
+
+**How do I add a scale to the axes?**
+
+- As a reminder, the `<g>` element is used to group SVG elements. To add an axis to your chart, you need to group your `<rect>` elements in a `<g>` element. And then you can add your axis
+
+```js
+// create the axis
+var yAxisValues = d3.scaleLinear()
+    .domain([0, d3.max(bardata)])
+    .range([height, 0]) // Notice the range is reversed
+
+var yAxisTicks = d3.axisLeft(yAxisValues).ticks(10) // 10 is the number of ticks you want
+
+// add the axis to the chart - the transform is so that it actually shows up
+var yGuide = d3.select('#viz svg').append('g')
+    .attr('transform', 'translate(18,0)')
+    .call(yAxisTicks)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Appendix A: SVG
 
 ```html
