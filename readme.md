@@ -88,6 +88,8 @@ d3.select('#viz svg')
 - Pick up here: [https://github.com/planetoftheweb/d3/blob/01_06e/builds/d3/js/script.js](https://github.com/planetoftheweb/d3/blob/01_06e/builds/d3/js/script.js)
 
 
+[[↑] Back to top](#top)
+
 ## Working with Data
 
 
@@ -106,7 +108,7 @@ d3.select('#viz svg')
 
 
 
-
+[[↑] Back to top](#top)
 
 ## FAQ
 
@@ -119,6 +121,8 @@ d3.select('#viz')
   .attr('height', 400)
   .style('background', '#f7f7f7')
 ```
+
+[[↑] Back to top](#top)
 
 **What are the main steps in building a simple bar chart?**
 
@@ -163,6 +167,8 @@ d3.select('#viz')   // select the #viz container element
 one of those arbritrary things where I just have to accept that I *first* select the rectangles that will be my bars and *then* create them.
 - **Note 2**: It looks like most of these functions, if there is data attached using the `data()` method, allow me to programmatically set their properties - most importantly for a bar chart: height, x position, and y position.
 
+[[↑] Back to top](#top)
+
 **How do we make our chart scale *vertically* with the data?**
 
 - We need to create a scale. There are a number of different kinds of scales but for a simple bar chart, we need `scaleLinear()` from D3.
@@ -194,6 +200,8 @@ var yScale = d3.scaleLinear()
 })
 ```
 
+[[↑] Back to top](#top)
+
 **How we make our data scale *horizontally* with the data?**
 
 - Just like the `yScale`, we must instantiate it with a D3 function (`d3.scaleBand()`) and then add a domain and range.
@@ -221,7 +229,7 @@ var xScale = d3.scaleBand()
   return height - yScale(d); // Untouched
 })
 ```
-
+[[↑] Back to top](#top)
 
 **How do you add events?**
 
@@ -241,6 +249,7 @@ var xScale = d3.scaleBand()
 ```
 - we can add it to the same d3 function using the `on` keyword. The key part is changing the right item, hence the `d3.select(this)` inside the anonymous function.
 
+[[↑] Back to top](#top)
 
 **How do I add transitions?**
 
@@ -253,6 +262,8 @@ var xScale = d3.scaleBand()
 })
 ```
 - notice how it is BEFORE the styling. I am selecting the element and THEN adding the transition and duration
+
+[[↑] Back to top](#top)
 
 **How do I add the cool bouncing bars in effect?**
 
@@ -299,6 +310,8 @@ myChart.transition()
   .ease(d3.easeBounceOut)
 ```
 
+[[↑] Back to top](#top)
+
 **How do I add a scale to the axes?**
 
 - As a reminder, the `<g>` element is used to group SVG elements. To add an axis to your chart, you need to group your `<rect>` elements in a `<g>` element. And then you can add your axis
@@ -317,7 +330,7 @@ var yGuide = d3.select('#viz svg').append('g')
     .call(yAxisTicks)
 ```
 
-
+[[↑] Back to top](#top)
 
 
 
