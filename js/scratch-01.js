@@ -28,7 +28,7 @@ var testDataObjects = testData.map((wt, i) => {
   return obj;
 })
 
-console.log(testDataObjects)
+// console.log(testDataObjects)
 
 
 var yScale = d3.scaleLinear().domain([175, 225]).range([0, height]);
@@ -42,7 +42,8 @@ var xAxisTicks = d3.axisBottom(xAxisValues).ticks(d3.timeDay.every(3))
 
 
 
-console.log(dates);
+
+// console.log(dates);
 
 
 d3.select('#viz')

@@ -1,3 +1,5 @@
+<a name="top"></a>
+
 # D3 Practice
 
 Using python server:
@@ -87,6 +89,12 @@ d3.select('#viz svg')
 
 
 ## Working with Data
+
+
+[[↑] Back to top](#top)
+
+## Basic Chart Creation Steps
+
 
 
 
