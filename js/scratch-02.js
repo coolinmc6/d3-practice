@@ -211,7 +211,7 @@ svg.append("path")
 // 12. Appends a circle for each datapoint 
 svg.selectAll(".dot")
     .data(dataset)
-  .enter().append("circle") // Uses the enter().append() method
+    .enter().append("circle") // Uses the enter().append() method
     .attr("class", "dot") // Assign a class for styling
     .attr("cx", function(d, i) { return xScale(i) })
     .attr("cy", function(d) { return yScale(d.y) })
