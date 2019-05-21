@@ -1,6 +1,6 @@
 
 // Clean Up Line Data
-console.log(trendOfMaterialWaste)
+// console.log(trendOfMaterialWaste)
 
 function getDate(str) {
   var s1 = str.indexOf('/')
@@ -10,7 +10,7 @@ function getDate(str) {
   var month = str.substr(0,s1)
   var day = str.substr(s1+1,dayLen);
   var year = str.substr(s2+1)
-  console.log(`${str}: Month: ${month}, Day: ${day}, Year: ${year}; #1: ${s1}; #2: ${s2}`);
+  // console.log(`${str}: Month: ${month}, Day: ${day}, Year: ${year}; #1: ${s1}; #2: ${s2}`);
   var d = new Date(year, month-1, day)
   return d;
 }
@@ -31,7 +31,7 @@ cleanedTrend.min = Math.min(...cleanedTrend.allValues)
 
 var trendWidth = 800;
 
-console.log(cleanedTrend)
+// console.log(cleanedTrend)
 
 var yScale5 = d3.scaleLinear()
   .domain([cleanedTrend.min, cleanedTrend.max])

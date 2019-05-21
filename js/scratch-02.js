@@ -6,7 +6,7 @@ var barWidth = 15;
 var margin = {top: 10, right: 0, bottom: 25, left: 25};
 
 
-console.log(practiceData)
+// console.log(practiceData)
 
 var cleaned = {
   type: 'Line',
@@ -35,7 +35,7 @@ cleaned.groupPadding = Math.floor((width - (cleaned.barCount*barWidth)) / cleane
 cleaned.groupPaddingStart = Math.floor(cleaned.groupPadding / 2,0);
 cleaned.max = d3.max(cleaned.allPoints)
 cleaned.min = 0; // d3.min(cleaned.allPoints)
-console.log(cleaned);
+// console.log(cleaned);
 
 // // console.log(testDataObjects)
 
@@ -153,7 +153,7 @@ drawline();
 //=============================================================================
 // Trend of Material Waste
 
-console.log(trendOfMaterialWaste);
+// console.log(trendOfMaterialWaste);
 
 // var lineChart = d3.select('#trendMatWaste')
 //   .append('svg')
