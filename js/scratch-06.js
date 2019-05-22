@@ -29,8 +29,19 @@ var timePeriod = d3.select('#time-period').append('svg')
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+var divs = 5;
+for(let i = 0; i < divs; i++)   {
+  let h = height/divs*i
+  timePeriod.append('line')
+  .attr('x1', 0)
+  .attr('x2', width*0.6)
+  .attr('y1', h+1)
+  .attr('y2', h+1)
+  .attr('style', 'stroke: #ddd; stroke-width: 1px')
+}
 // #3 - Define the X and Y Axes
-var yScale6 = d3.scaleLinear().domain([0, cleanedTime.max]).range([height, 0]);
+var yScale6 = d3.scaleLinear().domain([0, cleanedTime.max*1.5]).range([height, 0]);
 
 var xScale6 = d3.scaleLinear().domain([0, cleanedTime.allPoints.length]).range([0, width]);
 
@@ -81,8 +92,9 @@ timePeriod.append('g').selectAll('.cm-line')
     str += 'stroke-width: 2px;'
     return str;
   })
- 
-timePeriod.append('g').call(d3.axisLeft(yScale6).ticks(4))  
+
+  
+timePeriod.append('g').call(d3.axisLeft(yScale6).ticks(5))  
 
 timePeriod.append('g')
   .selectAll('text')
@@ -95,3 +107,4 @@ timePeriod.append('g')
     return xScale6(i+1) - 20
   })
   .attr('y', height + 20)
+

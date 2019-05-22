@@ -97,10 +97,108 @@ d3.select('#viz svg')
 
 ## Basic Chart Creation Steps
 
+**1. Acquire / Clean / Organize Your Data**
+
+- You'll need an Array of items. It can just be numbers or it can be objects or array
+- depending on what you are trying to do, you might also need to determine the max and min values of your data as well as
+the number of data points. *Note: this isn't required but I have done something like this below:*
+
+```js
+var originalData = [/*  Large Array of Data */];
+
+var cleanedData = { allPoints: []}
+cleanedData.data: originalData.map(item => {
+  cleanedData.allPoints.push(item.value);
+  return {
+    name: item.name, value: item.value
+  }
+})
+cleanedData.max = d3.max(cleanedData.allPoints);
+cleanedData.min = d3.min(cleanedData.allPoints)
+cleanedData.count = cleanedData.allPoints.length;
+```
+- This is probably not best practice but I like creating a master object of my data and key attributes.
+
+**2. Define important SVG variables.**
+
+- In D3, it is best practice to add a `<g>` element onto your SVG element and that is used as the main element that you place stuff into. This way you can control where your chart goes.
+
+```js
+var height = 400;
+var width = 600;
+var margin = {top: 10, right: 0, bottom: 25, left: 25};
+```
 
 
+**3. Build the SVG Element with the `<g>` Element**
 
+```js
+var myChart = d3.select('#viz1').append('svg')
+  .attr("width", width + margin.left + margin.right) // Width plus margins is the entire SVG's width
+  .attr("height", height + margin.top + margin.bottom) // Height plus margins is the entire SVG's height
+  .append("g") // add a <g> element and then translate it to the right and down a bit
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+```
 
+**4. Define the X and Y Axes**
+
+- The function itself to define a linear scale axis (X or Y) is pretty easy: `d3.scaleLinear().domain().range()`
+- You commonly just set that function equal to a variable (ex: `yScale` and `xScale`) so you can use it later
+to set the x and y positions of your bars, dots, whatever
+- The *domain* is the just lower and upper bounds of your data in an array
+- The *range* is just the lower and upper bounds of the positions in your SVG. An important point to remember
+is that because the SVG (and CSS) is drawn from top to bottom, the 0 for the y-axis is near the top of the screen.
+  - this means that your 0 on the y-axis is typically just the total height of your chart
+- Here are example X and Y axes:
+
+```js
+// I could also use: [d3.min(array), d3.max(array)]
+var yScale6 = d3.scaleLinear()
+              .domain([0, cleanedTime.max*1.5]) // I decided to add some cushion at the top
+              .range([height, 0]); 
+              // Notice how the larger number is first; it's "reversed" for the range for y-axis
+
+// X Scale needs the number of data points for positioning
+var xScale6 = d3.scaleLinear()
+              .domain([0, cleanedTime.allPoints.length]) // 0 - total # of data points
+              .range([0, width]); // the width of your chart
+```
+
+**5. Add the Dots/Rects/Etc. to the Chart**
+
+- Notice the pattern: 
+  - A. Append a `<g>` element
+  - B. Select all of your selector (even though it's not "there" yet)
+  - C. Attach your data
+  - D. Use the `enter().append()` to add your SVG element (circle, rect, etc.)
+  - E. Define whatever attributes are required for that particular SVG element. See more about SVG [here](#appendix-a-svg)
+
+```js
+var dotRadius = 3;
+timePeriod.append('g').selectAll('.cm-dot')
+  .data(cleanedTime.data).enter().append('circle')
+  .attr('class', 'cm-dot')
+  .attr('cx', function(d, i) {
+    return xScale6(i+1)
+  })
+  .attr('cy', function(d) {
+    return yScale6(d.old)
+  })
+  .attr('r', dotRadius)
+  .style('fill', '#990000')
+```
+
+**6. Add the Y-Axis "Guide" or Labels**
+
+- Like other items, it is a similar pattern:
+  - A. Add a `<g>` element
+  - B. Add our axis using the D3 methods
+- D3 has a function to place my y-axis exactly where I want it `d3.axisLeft()` and I simply need to pass in my `yScale` variable.
+  - I can also set the number of ticks that I want
+
+```js
+timePeriod.append('g').call(d3.axisLeft(yScale6).ticks(5))  
+```
 
 
 
