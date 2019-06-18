@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stacked Chart</title>
+    <style>
+    .line {
+        fill: none;
+        stroke: #ffab00;
+        stroke-width: 3;
+    }
+
+    .CM-line {
+        fill: none;
+        stroke: red;
+        stroke-width: 3;
+    }
+  
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+}
+  
+  .focus circle {
+    fill: none;
+    stroke: steelblue;
+    }
+
+    .trend-line-new, .trend-line-old {
+        fill: none;
+        stroke: #A66249;
+        stroke-width: 3;
+    }
+    .trend-line-new {
+        stroke: #657A8C;
+    }
+    </style>
+</head>
+<body>
+    <div id="viz"></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="js/practiceData.js"></script>
+    <script src="js/stacked.js"></script>
+    
+</body>
+</html>

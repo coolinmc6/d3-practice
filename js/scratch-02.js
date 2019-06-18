@@ -6,7 +6,7 @@ var barWidth = 15;
 var margin = {top: 10, right: 0, bottom: 25, left: 25};
 
 
-// console.log(practiceData)
+console.log(practiceData)
 
 var cleaned = {
   type: 'Line',
@@ -35,7 +35,7 @@ cleaned.groupPadding = Math.floor((width - (cleaned.barCount*barWidth)) / cleane
 cleaned.groupPaddingStart = Math.floor(cleaned.groupPadding / 2,0);
 cleaned.max = d3.max(cleaned.allPoints)
 cleaned.min = 0; // d3.min(cleaned.allPoints)
-// console.log(cleaned);
+console.log(cleaned);
 
 // // console.log(testDataObjects)
 
@@ -218,7 +218,7 @@ svg.selectAll(".dot")
     .attr("r", 5)
       .on("mouseover", function(a, b, c) { 
   			console.log(a) 
-        this.attr('class', 'focus')
+        // this.attr('class', 'focus')
 		})
 
 

@@ -8,9 +8,9 @@ cleanedTime.data = timePeriodComparison[0].qMatrix.map(arr => {
   // #3-a: this line added before I did the Y Axis
   cleanedTime.allPoints.push(arr[1].qNum, arr[2].qNum)
   return {
-    name: arr[0].qText,
-    old: arr[1].qNum,
-    new: arr[2].qNum,
+    dim1: arr[0].qText,
+    measure1: arr[1].qNum,
+    measure2: arr[2].qNum,
   }
 })
 
