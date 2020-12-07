@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            svg {width:500px; height:500px}
+            button  {float:left}
+            line    {stroke:#ddd;shape-rendering: crispEdges;}
+            text    {text-anchor:middle;}
+            circle {fill:orange;stroke:orange;fill-opacity:0.5;}
+            .axis line {fill:none;stroke:#ddd;shape-rendering: crispEdges;}
+            .axis path  {fill:none;}
+            .axis text {font-size:0.7em;fill:#555;font-family:sans-serif}
+        </style>
+        <script src="http://d3js.org/d3.v3.js"></script>
+    </head>
+    <body>
+        <main>
+            <button class="change">Change Data Set</button>
+          </main>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            
+            var dataArray1 = [30,35,45,55,70];
+            var dataArray2 = [50,55,45,35,20,25,25,40];
+
+            // Create SVG Element
+            var svgDoc = d3.select('body').append('svg')
+
+            svgDoc.append('g').attr('class', 'circles').selectAll('circle')
+              .data(dataArray1)
+              .enter()
+              .append('circle')
+              .attr('cx', (d,i) => {
+                var spacing = 200 / dataArray1.length;
+                return 40 + (spacing * i)
+              })
+              .attr('cy', 150)
+              .attr('r', (d, i) => {
+                return d;
+              })
+
+            let current = 1;
+
+            function update() {
+              let array = current === 1 ? dataArray2 : dataArray1;
+              current = current === 1 ? 2 : 1;
+              console.log(current, array)
+              // var svgDoc = d3.select("body svg")
+              var circles = svgDoc.select('g')
+                .selectAll('circle')
+                .data(array)
+              
+              circles.exit().remove();
+
+              console.log(svgDoc)
+              console.log(circles);
+              
+              // circles.enter().append('circle').attr('r', 0)
+              
+              // circles.transition().duration(500)
+              //   .attr('cx', (d,i) => {
+              //     var spacing = 200 / dataArray1.length;
+              //     return 50 + (spacing * i)
+              //   })
+              //   .attr('cy', 150)
+              //   .attr('r', (d, i) => {
+              //     return d;
+              //   })
+
+              circles.enter().append('circle').attr('r', 0)
+              circles.transition().duration(500)
+                .attr('cx', (d,i) => {
+                  var spacing = 200 / dataArray1.length;
+                  return 50 + (spacing * i)
+                })
+                .attr('cy', 150)
+                .attr('r', (d, i) => {
+                  return d;
+                })
+            }
+
+            $('.change').on('click', function() {
+              update()
+            })
+
+            
+        </script>
+    </body>
+</html>
